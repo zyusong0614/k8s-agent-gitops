@@ -26,9 +26,8 @@ spec:
               exit 1
           resources:
             requests:
-              memory: 16Mi
+              memory: 64Mi
               cpu: 10m
             limits:
-              memory: 64Mi
+              memory: 256Mi
               cpu: 100m
-
