@@ -14,7 +14,7 @@ spec:
     metadata:
       labels:
         app: oom-demo
-        memory_limit: 61Mi
+        memory_limit: 64Mi
     spec:
       containers:
         - name: app
@@ -28,8 +28,8 @@ spec:
                   data.append("x" * 1024 * 1024)
           resources:
             requests:
-              memory: 48Mi
+              memory: 32Mi
               cpu: 10m
             limits:
-              memory: 61Mi
+              memory: 64Mi
               cpu: 100m
