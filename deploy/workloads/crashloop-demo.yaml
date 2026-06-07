@@ -24,11 +24,13 @@ spec:
             - |
               echo "Error: missing required environment variable DEMO_REQUIRED_CONFIG"
               exit 1
+          env:
+            - name: DEMO_REQUIRED_CONFIG
+              value: "demo-config-value"
           resources:
             requests:
-              memory: 16Mi
+              memory: 128Mi
               cpu: 10m
             limits:
-              memory: 64Mi
+              memory: 256Mi
               cpu: 100m
-
