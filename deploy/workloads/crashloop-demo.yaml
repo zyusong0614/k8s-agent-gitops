@@ -22,8 +22,11 @@ spec:
             - sh
             - -c
             - |
-              echo "Error: missing required environment variable DEMO_REQUIRED_CONFIG"
-              exit 1
+              echo "Application started successfully"
+              sleep 3600
+          env:
+            - name: DEMO_REQUIRED_CONFIG
+              value: "default-config-value"
           resources:
             requests:
               memory: 16Mi
@@ -31,4 +34,3 @@ spec:
             limits:
               memory: 64Mi
               cpu: 100m
-
