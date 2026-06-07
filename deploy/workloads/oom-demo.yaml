@@ -14,7 +14,7 @@ spec:
     metadata:
       labels:
         app: oom-demo
-        memory_limit: 32Mi
+        memory_limit: 256Mi
     spec:
       containers:
         - name: app
@@ -23,14 +23,28 @@ spec:
             - python
             - -c
             - |
+              import sys
               data = []
-              while True:
+              max_iterations = 100
+              iteration = 0
+              while iteration < max_iterations:
                   data.append("x" * 1024 * 1024)
+                  iteration += 1
+              print("Demo completed successfully", file=sys.stderr)
           resources:
             requests:
-              memory: 16Mi
+              memory: 128Mi
               cpu: 10m
             limits:
-              memory: 32Mi
+              memory: 256Mi
               cpu: 100m
-
+          livenessProbe:
+            exec:
+              command:
+                - /bin/sh
+                - -c
+                - "ps aux | grep python | grep -v grep"
+            initialDelaySeconds: 10
+            periodSeconds: 30
+            failureThreshold: 3
+          restartPolicy: OnFailure
